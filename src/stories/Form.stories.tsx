@@ -137,6 +137,16 @@ const Template: StoryFn<FormFieldsProps> = (args) => {
                 }
             },
             {
+                name: 'dateTimePicker',
+                label: 'dateTimePicker',
+                fieldType: 'dateTimePicker',
+                format: 'YYYY-MM-DD HH:mm:ss',
+                gridProps: { xs: 12 },
+                parser: (value: any) => {
+                    return moment(value);
+                }
+            },
+            {
                 name: 'checkbox',
                 label: 'checkbox',
                 fieldType: 'checkbox',

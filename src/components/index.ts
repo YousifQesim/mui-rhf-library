@@ -12,5 +12,8 @@ export { CheckboxController } from './InputController/CheckboxController/Checkbo
 export { AutocompleteController } from './InputController/AutocompleteController/AutocompleteController';
 // Autocomplete Controller
 export { DatePickerController } from './InputController/DatePickerController/DatePickerController';
+// DateTimePicker Controller
+export { DateTimePickerController } from './InputController/DateTimePickerController/DateTimePickerController';
 // Form Fields
 export { FormFields } from './form/FormFields';
+

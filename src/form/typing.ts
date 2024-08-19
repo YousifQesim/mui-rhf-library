@@ -9,18 +9,36 @@ import {
     SwitchControllerProps,
     TextFieldControllerProps,
     DatePickerControllerProps,
-    CustomComponentControllerProps
+    CustomComponentControllerProps,
+    DateTimePickerControllerProps
 } from '../fields';
 import { DatePickerProps } from '@mui/x-date-pickers';
 
+// New type for DateTimePickerFieldProps
+type DateTimePickerFieldProps<T> = DatePickerProps<any> & {
+    fieldType: 'dateTimePicker';
+    parser: (value: string) => T;
+    hidden?: boolean;
+};
+
+// Updated DatePickerFieldProps to maintain existing functionality
 type DatePickerFieldProps<T> = DatePickerProps<any> & {
     fieldType: 'datePicker';
     parser: (value: string) => T;
     hidden?: boolean;
 };
 
+// Updated FieldProps to include DateTimePickerFieldProps
 export type FieldProps<T = any> =
     | (DatePickerFieldProps<T> & {
+          name: string;
+          label?: string;
+          props?: any;
+          gridProps?: Pick<GridProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+          textFieldProps?: TextFieldProps;
+          CustomComponent?: React.FC<any>;
+      })
+    | (DateTimePickerFieldProps<T> & {
           name: string;
           label?: string;
           props?: any;
@@ -44,6 +62,7 @@ export interface FormFieldsProps {
     control: Control<any>;
 }
 
+
 export type MuiRhfFieldComponentMap = {
     textField: React.FC<TextFieldControllerProps>;
     select: React.FC<SelectControllerProps>;
@@ -53,4 +72,5 @@ export type MuiRhfFieldComponentMap = {
     switch: React.FC<SwitchControllerProps>;
     datePicker: React.FC<DatePickerControllerProps>;
     custom: React.FC<CustomComponentControllerProps>;
+    dateTimePicker: React.FC<DateTimePickerControllerProps>;  // Correctly typed
 };

@@ -11,6 +11,7 @@ import DatePickerController from '../InputController/DatePickerController/DatePi
 import { Grid } from '@mui/material';
 
 import { FormFieldsProps, MuiRhfFieldComponentMap } from '../../form/typing';
+import { DateTimePickerController } from '../InputController/DateTimePickerController/DateTimePickerController';
 
 const MuiFieldComponentMapper: MuiRhfFieldComponentMap = {
     textField: TextFieldController,
@@ -20,7 +21,8 @@ const MuiFieldComponentMapper: MuiRhfFieldComponentMap = {
     radioGroup: RadioGroupController,
     switch: SwitchController,
     datePicker: DatePickerController,
-    custom: CustomComponentController
+    custom: CustomComponentController,
+    dateTimePicker: DateTimePickerController
 };
 
 export const FormFields: React.FC<FormFieldsProps> = ({ fields, control }) => {

@@ -65,7 +65,8 @@
         "url": "https://github.com/dashty94/mui-rhf-library"
     },
     "dependencies": {
-        "@rollup/plugin-terser": "^0.4.4"
+        "@rollup/plugin-terser": "^0.4.4",
+        "dayjs": "^1.11.12"
     },
     "peerDependencies": {
         "@emotion/react": "^11.11.1",
