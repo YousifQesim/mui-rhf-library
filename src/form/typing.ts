@@ -11,9 +11,10 @@ import {
     DatePickerControllerProps,
     CustomComponentControllerProps,
     DateTimePickerControllerProps,
-    TimePickerControllerProps
+    TimePickerControllerProps,
+    
 } from '../fields';
-import { DatePickerProps } from '@mui/x-date-pickers';
+import { DatePickerProps, TimePickerProps } from '@mui/x-date-pickers';
 
 // New type for DateTimePickerFieldProps
 type DateTimePickerFieldProps<T> = DatePickerProps<any> & {
@@ -28,9 +29,23 @@ type DatePickerFieldProps<T> = DatePickerProps<any> & {
     parser: (value: string) => T;
     hidden?: boolean;
 };
+type  TimePickerFieldProps = TimePickerProps<any>  & {
+    fieldType: 'timePicker';
+    parser: (value: string) => string;
+    hidden?: boolean;
+};
 
 // Updated FieldProps to include DateTimePickerFieldProps
 export type FieldProps<T = any> =
+|     
+(DatePickerFieldProps<T> & {  
+    name: string;
+    label?: string;
+    props?: any;
+    gridProps?: Pick<GridProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+    textFieldProps?: TextFieldProps;
+    CustomComponent?: React.FC<any>;
+})
     | (DatePickerFieldProps<T> & {
           name: string;
           label?: string;
@@ -57,15 +72,7 @@ export type FieldProps<T = any> =
           textFieldProps?: TextFieldProps;
           CustomComponent?: React.FC<any>;
       }
-    |  
-    (TimePickerControllerProps & {  
-        name: string;
-        label?: string;
-        props?: any;
-        gridProps?: Pick<GridProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-        textFieldProps?: TextFieldProps;
-        CustomComponent?: React.FC<any>;
-    })
+
       ;
 
 export interface FormFieldsProps {
@@ -83,5 +90,6 @@ export type MuiRhfFieldComponentMap = {
     switch: React.FC<SwitchControllerProps>;
     datePicker: React.FC<DatePickerControllerProps>;
     custom: React.FC<CustomComponentControllerProps>;
-    dateTimePicker: React.FC<DateTimePickerControllerProps>;  // Correctly typed
+    dateTimePicker: React.FC<DateTimePickerControllerProps>;
+    timePicker: React.FC<TimePickerControllerProps>;
 };

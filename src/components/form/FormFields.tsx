@@ -12,6 +12,7 @@ import { Grid } from '@mui/material';
 
 import { FormFieldsProps, MuiRhfFieldComponentMap } from '../../form/typing';
 import { DateTimePickerController } from '../InputController/DateTimePickerController/DateTimePickerController';
+import { TimePickerController } from '../InputController/TimePickerController/TimePickerController';
 
 const MuiFieldComponentMapper: MuiRhfFieldComponentMap = {
     textField: TextFieldController,
@@ -22,7 +23,8 @@ const MuiFieldComponentMapper: MuiRhfFieldComponentMap = {
     switch: SwitchController,
     datePicker: DatePickerController,
     custom: CustomComponentController,
-    dateTimePicker: DateTimePickerController
+    dateTimePicker: DateTimePickerController,
+    timePicker: TimePickerController
 };
 
 export const FormFields: React.FC<FormFieldsProps> = ({ fields, control }) => {
@@ -31,8 +33,7 @@ export const FormFields: React.FC<FormFieldsProps> = ({ fields, control }) => {
             {fields
                 ?.filter(({ hidden }) => !hidden)
                 .map(({ fieldType, props, name, label, gridProps, ...rest }, index) => {
-                    const MuiRhfField =
-                        MuiFieldComponentMapper[fieldType as keyof MuiRhfFieldComponentMap] || TextFieldController;
+                    const MuiRhfField = MuiFieldComponentMapper[fieldType] || TextFieldController;
 
                     return (
                         <Grid item xs={12} {...gridProps} key={name + index}>

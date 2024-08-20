@@ -26,25 +26,28 @@ const meta: Meta = {
 
 export default meta;
 
+// Schema for validation using yup
 const schema = object().shape({
     datePicker: date()
         .nullable()
         .transform((v) => (v instanceof Date && !isNaN(v as any) ? v : null))
+        .required('Date is required')
 });
 
 const Template: StoryFn<DatePickerControllerProps> = (args) => {
     const { control, handleSubmit } = useForm({
         resolver: yupResolver(schema)
     });
+
     return (
         <LocalizationProvider dateAdapter={AdapterMoment}>
             <form
                 onSubmit={handleSubmit((data) => {
-                    console.log(data);
+                    console.log('Submitted data:', data);
                 })}
             >
                 <DatePickerController {...args} control={control} />
-                <button>submit</button>
+                <button type="submit">Submit</button>
             </form>
         </LocalizationProvider>
     );
@@ -54,7 +57,7 @@ export const DatePicker = Template.bind({});
 
 DatePicker.args = {
     name: 'datePicker',
-    label: 'Text Field Controller',
+    label: 'Date Picker Controller',
     format: 'YYYY-MM-DD',
-    parser: (date) => moment(date)
+    parser: (value: any) => (moment(value).isValid() ? moment(value) : moment())
 };
