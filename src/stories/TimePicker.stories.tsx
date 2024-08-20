@@ -28,9 +28,7 @@ export default meta;
 
 // Define validation schema using Yup
 const schema = object().shape({
-    timePicker: string()
-        .nullable()
-        .test('isValidTime', 'Invalid time format', (value) => (value ? moment(value, 'HH:mm', true).isValid() : true))
+    timePicker: string().test('isValidTime', 'Invalid time format', (value) => moment(value, 'HH:mm').isValid())
 });
 
 const Template: StoryFn<TimePickerControllerProps> = (args) => {
