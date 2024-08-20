@@ -1,17 +1,28 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { DatePickerControllerProps } from '../../../fields';
 import { DatePicker } from '@mui/x-date-pickers';
+import { DatePickerControllerProps } from '../../../fields';
 
-export const DatePickerController: React.FC<DatePickerControllerProps> = ({ name, control, parser, ...rest }) => {
+export const DatePickerController: React.FC<DatePickerControllerProps> = ({
+    name,
+    control,
+    parser,
+    onChange,
+    ...rest
+}) => {
     return (
         <Controller
             name={name}
             control={control}
             defaultValue={rest?.defaultValue || ''}
-            render={({ field: { ref, value, ...restField }, fieldState: { invalid, error } }) => {
-                const restProps = { ...rest };
-                delete restProps.defaultValue;
+            render={({ field: { onChange, value, ref, ...restField }, fieldState: { invalid, error } }) => {
+                const handleChange = (date: Date | null) => {
+                    onChange(date); // Updates form state
+                    if (onChange) {
+                        onChange(date); // Execute any custom logic
+                    }
+                };
+
                 return (
                     <DatePicker
                         {...restField}
@@ -24,8 +35,9 @@ export const DatePickerController: React.FC<DatePickerControllerProps> = ({ name
                                 fullWidth: true
                             }
                         }}
-                        {...restProps}
+                        {...rest}
                         value={value ? parser(value) : null}
+                        onChange={handleChange}
                     />
                 );
             }}

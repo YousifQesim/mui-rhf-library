@@ -89,6 +89,7 @@ export type CustomComponentControllerProps = MuiRhfFieldProps & {
 export type DatePickerControllerProps = MuiRhfFieldProps &
     Omit<DatePickerProps<any>, 'onChange' | 'value'> & {
         parser: (value: any) => any;
+        onChange?: (date: Date | null) => void 
     };
 
 // DateTimePicker Controller Props
