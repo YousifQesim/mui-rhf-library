@@ -1,7 +1,7 @@
 import { Control } from 'react-hook-form';
 import { TextFieldProps, SelectProps, SelectChangeEvent, AutocompleteProps } from '@mui/material';
 import React from 'react';
-import { DatePickerProps, DateTimePickerProps } from '@mui/x-date-pickers';
+import { DatePickerProps, DateTimePickerProps,TimePickerProps } from '@mui/x-date-pickers';
 
 // Common input field props
 export type MuiRhfFieldProps = {
@@ -97,3 +97,8 @@ export type DateTimePickerControllerProps = MuiRhfFieldProps &
     Omit<DateTimePickerProps<any>, 'onChange' | 'value'> & {
         parser?: (value: any) => any;
     };
+    // TimePicker Controller Props
+export type TimePickerControllerProps = MuiRhfFieldProps &
+Omit<TimePickerProps<any>, 'onChange' | 'value'> & {
+    parser?: (value: any) => any;  
+};
