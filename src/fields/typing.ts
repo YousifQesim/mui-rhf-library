@@ -96,9 +96,11 @@ export type DatePickerControllerProps = MuiRhfFieldProps &
 export type DateTimePickerControllerProps = MuiRhfFieldProps &
     Omit<DateTimePickerProps<any>, 'onChange' | 'value'> & {
         parser?: (value: any) => any;
+        onChange?: (date: Date | null) => void;
     };
     // TimePicker Controller Props
 export type TimePickerControllerProps = MuiRhfFieldProps &
 Omit<TimePickerProps<any>, 'onChange' | 'value'> & {
     parser?: (value: any) => any;  
+    onChange?: (date: Date | null) => void;
 };

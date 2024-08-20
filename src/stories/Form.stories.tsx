@@ -137,6 +137,16 @@ const Template: StoryFn<FormFieldsProps> = (args) => {
                 }
             },
             {
+                name: 'timePicker',
+                label: 'timePicker',
+                fieldType: 'timePicker',
+                format: 'HH:mm:ss',
+                gridProps: { xs: 12 },
+                parser: (value: any) => {
+                    return moment(value);
+                }
+            },
+            {
                 name: 'dateTimePicker',
                 label: 'dateTimePicker',
                 fieldType: 'dateTimePicker',

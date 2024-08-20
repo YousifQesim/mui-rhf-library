@@ -29,9 +29,9 @@ type DatePickerFieldProps<T> = DatePickerProps<any> & {
     parser: (value: string) => T;
     hidden?: boolean;
 };
-type  TimePickerFieldProps = TimePickerProps<any>  & {
+type  TimePickerFieldProps<T> = TimePickerProps<any>  & {
     fieldType: 'timePicker';
-    parser: (value: string) => string;
+    parser: (value: string) => T;
     hidden?: boolean;
 };
 
@@ -46,14 +46,14 @@ export type FieldProps<T = any> =
     textFieldProps?: TextFieldProps;
     CustomComponent?: React.FC<any>;
 })
-    | (DatePickerFieldProps<T> & {
-          name: string;
-          label?: string;
-          props?: any;
-          gridProps?: Pick<GridProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-          textFieldProps?: TextFieldProps;
-          CustomComponent?: React.FC<any>;
-      })
+    | (TimePickerFieldProps<T> & {
+        name: string;
+        label?: string;
+        props?: any;
+        gridProps?: Pick<GridProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+        textFieldProps?: TextFieldProps;
+        CustomComponent?: React.FC<any>;
+    })
     | (DateTimePickerFieldProps<T> & {
           name: string;
           label?: string;

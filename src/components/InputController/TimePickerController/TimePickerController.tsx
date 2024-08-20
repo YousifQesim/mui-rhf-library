@@ -14,23 +14,54 @@ export const TimePickerController: React.FC<TimePickerControllerProps> = ({
         <Controller
             name={name}
             control={control}
-            render={({ field, fieldState }) => (
-                <TimePicker
-                    {...rest}
-                    value={parser(field.value)}
-                    onChange={(value) => {
-                        const formattedValue = value ? dayjs(value).format('HH:mm') : '';
-                        field.onChange(formattedValue);
-                    }}
-                    slotProps={{
-                        textField: {
-                            error: fieldState.invalid,
-                            helperText: fieldState.error?.message,
-                            fullWidth: true
-                        }
-                    }}
-                />
-            )}
+            render={({ field: { onChange, value, ref, ...restField }, fieldState: { invalid, error } }) => {
+                const handleChange = (date: Date | null) => {
+                    onChange(date); // Updates form state
+                    if (rest?.onChange) {
+                        rest.onChange(date); // Execute any custom logic
+                    }
+                };
+                return (
+                    <TimePicker
+                        {...restField}
+                        label={rest?.label}
+                        slotProps={{
+                            textField: {
+                                error: invalid,
+                                helperText: error?.message || rest.helperText,
+                                fullWidth: true
+                            }
+                        }}
+                        {...rest}
+                        value={value ? parser(value) : null}
+                        onChange={handleChange}
+                    />
+                );
+            }}
         />
     );
 };
+
+//         <Controller
+//             name={name}
+//             control={control}
+//             render={({ field, fieldState }) => (
+//                 <TimePicker
+//                     {...rest}
+//                     value={parser(field.value)}
+//                     onChange={(value) => {
+//                         const formattedValue = value ? dayjs(value).format('HH:mm') : '';
+//                         field.onChange(formattedValue);
+//                     }}
+//                     slotProps={{
+//                         textField: {
+//                             error: fieldState.invalid,
+//                             helperText: fieldState.error?.message,
+//                             fullWidth: true
+//                         }
+//                     }}
+//                 />
+//             )}
+//         />
+//     );
+// };
