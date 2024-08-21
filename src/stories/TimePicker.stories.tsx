@@ -71,13 +71,3 @@ CustomFormat.args = {
     format: 'hh:mm A', // 12-hour format with AM/PM
     parser: (value: any) => (moment(value, 'hh:mm A').isValid() ? moment(value, 'hh:mm A') : moment())
 };
-
-// Story with validation
-export const WithValidation = Template.bind({});
-
-WithValidation.args = {
-    name: 'timePicker',
-    label: 'Select Time (with validation)',
-    format: 'HH:mm',
-    parser: (value: any) => (moment(value).isValid() ? moment(value) : moment())
-};
