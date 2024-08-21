@@ -27,7 +27,9 @@ const meta: Meta = {
 export default meta;
 
 const schema = object().shape({
-    dateTimePicker: date().transform((v) => (v instanceof Date && !isNaN(v as any) ? v : null))
+    dateTimePicker: date()
+        .transform((v) => (v instanceof Date && !isNaN(v as any) ? v : null))
+        .required('Date is required')
 });
 
 const Template: StoryFn<DateTimePickerControllerProps> = (args) => {
