@@ -41,27 +41,3 @@ export const TimePickerController: React.FC<TimePickerControllerProps> = ({
         />
     );
 };
-
-//         <Controller
-//             name={name}
-//             control={control}
-//             render={({ field, fieldState }) => (
-//                 <TimePicker
-//                     {...rest}
-//                     value={parser(field.value)}
-//                     onChange={(value) => {
-//                         const formattedValue = value ? dayjs(value).format('HH:mm') : '';
-//                         field.onChange(formattedValue);
-//                     }}
-//                     slotProps={{
-//                         textField: {
-//                             error: fieldState.invalid,
-//                             helperText: fieldState.error?.message,
-//                             fullWidth: true
-//                         }
-//                     }}
-//                 />
-//             )}
-//         />
-//     );
-// };
