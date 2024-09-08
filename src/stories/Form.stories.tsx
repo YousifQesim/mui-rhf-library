@@ -131,7 +131,6 @@ const Template: StoryFn<FormFieldsProps> = (args) => {
                 fieldType: 'datePicker',
                 format: 'YYYY-MM-DD',
                 gridProps: { xs: 12 },
-                helperText: 'test',
                 parser: (value: any) => {
                     return moment(value);
                 }

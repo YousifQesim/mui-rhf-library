@@ -44,7 +44,7 @@ export const RadioGroupController: React.FC<RadioGroupControllerProps> = ({
                             />
                         ))}
                     </RadioGroup>
-                    <FormHelperText>{fieldState?.error?.message || rest.helperText}</FormHelperText>
+                    <FormHelperText>{fieldState?.error?.message ?? rest.helperText}</FormHelperText>
                 </FormControl>
             )}
         />
