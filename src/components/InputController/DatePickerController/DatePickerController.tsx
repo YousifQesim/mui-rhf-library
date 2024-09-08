@@ -25,7 +25,7 @@ export const DatePickerController: React.FC<DatePickerControllerProps> = ({ name
                         slotProps={{
                             textField: {
                                 error: invalid,
-                                helperText: error?.message || rest.helperText,
+                                helperText: error?.message ?? rest.helperText,
                                 fullWidth: true
                             }
                         }}
