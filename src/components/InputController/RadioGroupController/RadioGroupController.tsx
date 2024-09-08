@@ -11,6 +11,8 @@ export const RadioGroupController: React.FC<RadioGroupControllerProps> = ({
     defaultValue,
     control,
     options,
+    optionLabel = 'label', 
+    optionValue = 'value',  
     onChange,
     onBlur,
     ...rest
@@ -38,9 +40,9 @@ export const RadioGroupController: React.FC<RadioGroupControllerProps> = ({
                         {options.map((option, index) => (
                             <FormControlLabel
                                 key={index}
-                                value={option.value}
+                                value={String(option[optionValue])} 
                                 control={<Radio />}
-                                label={option.label}
+                                label={String(option[optionLabel])} 
                             />
                         ))}
                     </RadioGroup>

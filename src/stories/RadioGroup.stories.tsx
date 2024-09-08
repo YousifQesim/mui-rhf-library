@@ -8,6 +8,8 @@ const meta: Meta = {
     title: 'RadioGroup Controller',
     component: RadioGroupController,
     argTypes: {
+        optionLabel: { control: 'text' }, 
+        optionValue: { control: 'text' }, 
         children: {
             control: {
                 type: 'text'
@@ -33,8 +35,14 @@ FormGroup.args = {
     name: 'formGroup',
     defaultValue: '',
     label: 'RadioGroup Controller',
+
     options: [
-        { label: 'Option 1', value: 'option1' },
-        { label: 'Option 2', value: 'option2' }
+        { label: 'Option A', value: 'A', description: 'This is option A' },
+        { label: 'Option B', value: 'B', description: 'This is option B' },
+        { label: 'Option C', value: 'C', description: 'This is option C' },
     ],
+  
+    optionLabel: 'description', 
+    optionValue: 'value',        
 };
+

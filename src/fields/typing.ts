@@ -11,10 +11,12 @@ export type MuiRhfFieldProps = {
 };
 
 // Option
-export type Option = {
-    value: string;
+type Option = {
+    value: string | number;
     label: string;
+    [key: string]: any; 
 };
+
 
 // TextField
 export type TextFieldControllerProps = Omit<MuiRhfFieldProps, 'helperText'> &
@@ -48,6 +50,8 @@ export type RadioGroupControllerProps = MuiRhfFieldProps & {
     label?: string;
     defaultValue: string | number;
     options: Array<Option>;
+    optionLabel?: keyof Option | string;
+    optionValue?: keyof Option | string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
 };
